@@ -100,7 +100,7 @@ rgs=[str(value) for value in r['公司名'].values]
 from pyecharts import options as opts
 from pyecharts.commons.utils import JsCode
 from streamlit_echarts import Map
-with open(r"C:\Users\叶小懿\Desktop\500000.json", "r",encoding="utf-8") as f:
+with open(r".//500000.json", "r",encoding="utf-8") as f:
     map = Map(
         "chongqing", 
         json.loads(f.read())) 
@@ -240,7 +240,7 @@ from pyecharts.charts import Bar
 from pyecharts.charts import Pie
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
-bi=pd.read_excel(r'.\猎聘.xlsx')#,encoding='gb18030')
+bi=pd.read_excel(r'.//lieping.xlsx')#,encoding='gb18030')
 part_interval = ["5K以下", "5K-10K", "10K-15K", "15K-20K", "20K-30K", "30K-50K", "50K以上"]
 level1, level2, level3, level4, level5, level6, level7 = 0, 0, 0, 0, 0, 0, 0
 #遍历salary，然后对数据进行划分，取中值为标准，薪资单位为 K
