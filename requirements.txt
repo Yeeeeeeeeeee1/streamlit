@@ -1,0 +1,1 @@
+numpy==1.18.5streamlit==0.61.0pandas==1.0.1joblib==0.14.1lscikit-learn==0.22.1
