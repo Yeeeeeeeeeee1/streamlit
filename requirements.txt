@@ -1,1 +1,15 @@
-numpy==1.18.5streamlit==0.61.0pandas==1.0.1joblib==0.14.1lscikit-learn==0.22.1
+requests
+pandas
+numpy
+streamlit==1.11.1
+click==8
+matplotlib
+altair
+plotly
+PyDeck==0.7.1
+graphviz
+scipy
+Pillow
+streamlit-player
+streamlit-echarts
+pyecharts
