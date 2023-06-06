@@ -23,7 +23,7 @@ bg_img="""
   background-size: cover;
   background-position: center center;
   background-repeat: repeat;
-  background-image: url(./ceLSL3NHSblIM.jpg)}}
+  background-image: url(./app/ceLSL3NHSblIM.jpg)}}
 [data-testid="stHeader"]{
     background-color:rgba(0, 0, 0, 0)
     }
