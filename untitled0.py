@@ -17,13 +17,13 @@ st.markdown("<h1 style='text-align: center; color: white;'>猎聘招聘数据分
 bi=pd.read_excel(r'.//lieping.xlsx')#,encoding='gb18030')
 bg_img="""
 <style>
-.stApp{ 
+.stApp{{
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center center;
   background-repeat: repeat;
-  background-image: url(./ceLSL3NHSblIM.jpg)}
+  background-image: url(./ceLSL3NHSblIM.jpg)}}
 [data-testid="stHeader"]{
     background-color:rgba(0, 0, 0, 0)
     }
