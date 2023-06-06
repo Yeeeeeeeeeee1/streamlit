@@ -14,7 +14,7 @@ from PIL import Image
 st.set_page_config(page_title="猎聘", layout="wide")
 #st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center; color: white;'>猎聘招聘数据分析</h1>", unsafe_allow_html=True)
-bi=pd.read_excel(r'C:\Users\叶小懿\Desktop\猎聘.xlsx')#,encoding='gb18030')
+bi=pd.read_excel(r'.\猎聘.xlsx')#,encoding='gb18030')
 bg_img="""
 <style>
 [data-testid="stAppViewContainer"]{ 
@@ -240,7 +240,7 @@ from pyecharts.charts import Bar
 from pyecharts.charts import Pie
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
-bi=pd.read_excel(r'C:\Users\叶小懿\Desktop\猎聘.xlsx')#,encoding='gb18030')
+bi=pd.read_excel(r'.\猎聘.xlsx')#,encoding='gb18030')
 part_interval = ["5K以下", "5K-10K", "10K-15K", "15K-20K", "20K-30K", "30K-50K", "50K以上"]
 level1, level2, level3, level4, level5, level6, level7 = 0, 0, 0, 0, 0, 0, 0
 #遍历salary，然后对数据进行划分，取中值为标准，薪资单位为 K
