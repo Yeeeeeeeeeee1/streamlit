@@ -12,7 +12,7 @@ from pyecharts.charts import Bar
 from streamlit_echarts import st_pyecharts
 from PIL import Image
 st.set_page_config(page_title="猎聘", layout="wide")
-#st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
+st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center; color: white;'>猎聘招聘数据分析</h1>", unsafe_allow_html=True)
 bi=pd.read_excel(r'.//lieping.xlsx')#,encoding='gb18030')
 bg_img="""
