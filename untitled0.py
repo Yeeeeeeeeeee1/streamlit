@@ -15,29 +15,24 @@ st.set_page_config(page_title="猎聘", layout="wide")
 #st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center; color: white;'>猎聘招聘数据分析</h1>", unsafe_allow_html=True)
 bi=pd.read_excel(r'.//lieping.xlsx')#,encoding='gb18030')
-import base64
-
-@st.cache(allow_output_mutation=True)
-def get_base64_of_bin_file(bin_file):
+def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-def set_png_as_page_bg(png_file):
-    bin_str = get_base64_of_bin_file(png_file)
+def set_background(png_file):
+    bin_str = get_base64(png_file)
     page_bg_img = '''
     <style>
     body {
-    background-image: url("data:./ceLSL3NHSblIM.jpg;base64,%s");
+    background-image: url("data:image/png;base64,%s");
     background-size: cover;
     }
     </style>
     ''' % bin_str
-    
     st.markdown(page_bg_img, unsafe_allow_html=True)
-    return
 
-set_png_as_page_bg('./ceLSL3NHSblIM.jpg')
+set_background('.//ceLSL3NHSblIM.jpg')
 bg_img="""
 <style>
 .stApp{{
