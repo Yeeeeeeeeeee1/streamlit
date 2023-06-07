@@ -15,6 +15,7 @@ st.set_page_config(page_title="猎聘", layout="wide")
 #st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center; color: white;'>猎聘招聘数据分析</h1>", unsafe_allow_html=True)
 bi=pd.read_excel(r'.//lieping.xlsx')#,encoding='gb18030')
+import base64
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
