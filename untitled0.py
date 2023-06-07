@@ -28,7 +28,7 @@ def set_png_as_page_bg(png_file):
     page_bg_img = '''
     <style>
     body {
-    background-image: url("data:./app/ceLSL3NHSblIM.jpg;base64,%s");
+    background-image: url("data:./ceLSL3NHSblIM.jpg;base64,%s");
     background-size: cover;
     }
     </style>
