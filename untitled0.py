@@ -221,7 +221,7 @@ rsm=[int(value) for value in r['salary_mean'].values]
 rgs=[str(value) for value in r['公司名'].values]
 bar = (
     Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(220, 220, 220, 0.4)',
-                               theme=ThemeType.WALDEN))
+                               theme=ThemeType.DARK))
     .add_xaxis(rgs)
     .add_yaxis("平均工资", rsm)
     .set_series_opts(label_opts=opts.LabelOpts(
