@@ -224,7 +224,7 @@ bar = (
                                theme=ThemeType.WALDEN))
     .add_xaxis(rgs)
     .add_yaxis("平均工资", rsm)
-    .set_series_opts(label_opts=opts.LabelOpts(is_show=False)
+    .set_series_opts(label_opts=opts.LabelOpts(is_show=False),
                     itemstyle_opts={
                 "normal": {
                     "color": JsCode(
