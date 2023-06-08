@@ -235,7 +235,7 @@ bar = (
                     "color": JsCode(
                         """new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
                             offset: 0,color: 'rgba(0, 244, 255, 1)'}
-                            ,{offset: 1,color: 'rgba(0, 77, 167, 1)'}], false)
+                            ,{offset: 1,color: 'rgba(0, 0, 255, 1)'}], false)
                         """
                     ),  # 调整柱子颜色渐变
                     'shadowBlur': 8,  # 光影大小
