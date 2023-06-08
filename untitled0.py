@@ -194,7 +194,7 @@ bar = (
     .add_yaxis("最低工资", bsmin,bar_width = 20 )
     .add_yaxis("最高工资", bsmax,bar_width = 20)
     .set_series_opts(label_opts=opts.LabelOpts(is_show=False,position= "Right"))
-    .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状堆叠图'),
+    .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状图'),
                      xaxis_opts=opts.AxisOpts(name='学历'),       
                      yaxis_opts=opts.AxisOpts(name='工资（k）'),
                     legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="horizontal")
@@ -220,7 +220,7 @@ r=bi.groupby('公司名',as_index=False).mean('salary_mean').drop(index=0).sort_
 rsm=[int(value) for value in r['salary_mean'].values]
 rgs=[str(value) for value in r['公司名'].values]
 bar = (
-    Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(220, 220, 220, 0.4)',
+    Bar(init_opts=opts.InitOpts(width='800px', height='500px',#bg_color='rgba(220, 220, 220, 0.4)',
                                theme=ThemeType.DARK))
     .add_xaxis(rgs)
     .add_yaxis("平均工资", rsm)
