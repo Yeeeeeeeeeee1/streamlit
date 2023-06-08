@@ -363,7 +363,7 @@ with c32:
     #option_province, map_province0,events_province=m3()
     st_echarts(options,map=map,events=events, height=1000,theme='dark')
 with c33:
-    st_pyecharts(grid,theme='dark', height='500px')
+    st_pyecharts(grid, height='500px')
     st_pyecharts(bar,theme='dark', height='450px')
 
 # with c21:
