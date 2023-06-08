@@ -197,7 +197,7 @@ bar = (
     .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状堆叠图'),
                      xaxis_opts=opts.AxisOpts(name='学历'),       
                      yaxis_opts=opts.AxisOpts(name='工资（k）'),
-                    legend_opts=opts.LegendOpts(type_="scroll", pos_right=20, orient="vertical")
+                    legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="horizontal")
                     )
 )
 line = (
@@ -219,18 +219,102 @@ grid.render_notebook()
 r=bi.groupby('公司名',as_index=False).mean('salary_mean').drop(index=0).sort_values(axis = 0, ascending = True,by=['salary_mean']).iloc[223:233]
 rsm=[int(value) for value in r['salary_mean'].values]
 rgs=[str(value) for value in r['公司名'].values]
-bar = (
-    Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(220, 220, 220, 0.4)',
-                               theme=ThemeType.WALDEN))
-    .add_xaxis(rgs)
-    .add_yaxis("平均工资", rsm)
-    .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
-    .set_global_opts(title_opts=opts.TitleOpts(title='平均工资top10'),
-                     xaxis_opts=opts.AxisOpts(name='公司名'),       
-                     yaxis_opts=opts.AxisOpts(name='工资（k）'))
-    .reversal_axis()
-)
-bar.render('平均工资top10.html')
+def echarts_bar(x, y, y2, title='平均工资TOP10'):
+    """
+    x: 函数传入x轴标签数据
+    y：函数传入y轴数据
+    title：主标题
+    subtitle：副标题
+    label：图例
+    """
+    bar = Bar(
+        init_opts=opts.InitOpts(
+            bg_color='#080b30',  # 设置背景颜色
+            theme='dark',  # 设置主题
+            width='900px',  # 设置图的宽度
+            height='600px'  # 设置图的高度
+        )
+    )
+    bar.add_xaxis(rgs)
+    bar.reversal_axis()
+    bar.add_yaxis("平均工资", rsm,
+                  label_opts=opts.LabelOpts(is_show=True)  # 是否显示数据
+                  , category_gap="70%"  # 柱子宽度设置
+                  , yaxis_index=0
+                  )
+    bar.add_yaxis(label2, y2,
+                  label_opts=opts.LabelOpts(is_show=True)  # 是否显示数据
+                  , category_gap="70%"  # 柱子宽度设置
+                  , yaxis_index=1
+                  )
+    bar.set_series_opts(  # 自定义图表样式
+        label_opts=opts.LabelOpts(
+            is_show=True,
+            position='top',  # position 标签的位置 可选 'top'，'left'，'right'，'bottom'，'inside'，'insideLeft'，'insideRight'
+            font_size=15,
+            color='white',
+            font_weight='bolder',  # font_weight 文字字体的粗细  'normal'，'bold'，'bolder'，'lighter'
+            font_style='oblique',  # font_style 文字字体的风格，可选 'normal'，'italic'，'oblique'
+        ),  # 是否显示数据标签
+        itemstyle_opts={
+            "normal": {
+                "color": JsCode(
+                    """new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,color: 'rgba(0, 244, 255, 1)'}
+                        ,{offset: 1,color: 'rgba(0, 77, 167, 1)'}], false)
+                    """
+                ),  # 调整柱子颜色渐变
+                'shadowBlur': 15,  # 光影大小
+                "barBorderRadius": [100, 100, 100, 100],  # 调整柱子圆角弧度
+                "shadowColor": "#0EEEF9",  # 调整阴影颜色
+                'shadowOffsetY': 2,
+                'shadowOffsetX': 2,  # 偏移量
+            }
+        }
+    )
+    bar.set_global_opts(
+        # 标题设置
+        title_opts=opts.TitleOpts(
+            title=title,  # 主标题
+            pos_left='center',  # 标题展示位置
+            title_textstyle_opts=dict(color='#fff')  # 设置标题字体颜色
+        ),
+        # 图例设置
+        legend_opts=opts.LegendOpts(
+            is_show=True,  # 是否显示图例
+            pos_left='right',  # 图例显示位置
+            pos_top='3%',  # 图例距离顶部的距离
+            orient='horizontal'  # 图例水平布局
+        ),
+        tooltip_opts=opts.TooltipOpts(
+            is_show=True,  # 是否使用提示框
+            trigger='axis',  # 触发类型
+            is_show_content=True,
+            trigger_on='mousemove|click',  # 触发条件，点击或者悬停均可出发
+            axis_pointer_type='cross',  # 指示器类型，鼠标移动到图表区可以查看效果
+        ),
+        yaxis_opts=opts.AxisOpts(
+            is_show=True,
+            splitline_opts=opts.SplitLineOpts(is_show=False),  # 分割线
+            axistick_opts=opts.AxisTickOpts(is_show=False),  # 刻度不显示
+            axislabel_opts=opts.LabelOpts(  # 坐标轴标签配置
+                font_size=13,  # 字体大小
+                font_weight='bolder'  # 字重
+            ),
+        ),  # 关闭Y轴显示
+        xaxis_opts=opts.AxisOpts(
+            boundary_gap=True,  # 两边不显示间隔
+            axistick_opts=opts.AxisTickOpts(is_show=True),  # 刻度不显示
+            splitline_opts=opts.SplitLineOpts(is_show=False),  # 分割线不显示
+            axisline_opts=opts.AxisLineOpts(is_show=True),  # 轴不显示
+            axislabel_opts=opts.LabelOpts(  # 坐标轴标签配置
+                font_size=13,  # 字体大小
+                font_weight='bolder'  # 字重
+            ),
+        ),
+    )
+    bar.extend_axis(yaxis=opts.AxisOpts())
+    return bar
 list7=[]
 for i in range(len(bi)):
     if '/' in str(bi['公司信息'][i]) :    
