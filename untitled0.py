@@ -188,19 +188,21 @@ bxuel=[str(value) for value in b['学历要求'].values]
 bsmean=[int(value) for value in b['salary_mean'].values]
 from pyecharts.charts import Bar
 bar = (
-    Bar(init_opts=opts.InitOpts(width='400px', height='500px', bg_color='rgba(220, 220, 220, 0.4)',
-                               theme=ThemeType.WALDEN))
+    Bar(init_opts=opts.InitOpts(width='400px', height='500px',
+                               theme=ThemeType.DARK))
     .add_xaxis(bxuel)
     .add_yaxis("最低工资", bsmin,bar_width = 20 )
     .add_yaxis("最高工资", bsmax,bar_width = 20)
     .set_series_opts(label_opts=opts.LabelOpts(is_show=False,position= "Right"))
     .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状堆叠图'),
                      xaxis_opts=opts.AxisOpts(name='学历'),       
-                     yaxis_opts=opts.AxisOpts(name='工资（k）'))
+                     yaxis_opts=opts.AxisOpts(name='工资（k）'),
+                    legend_opts=opts.LegendOpts(type_="scroll", pos_left="right", orient="vertical")
+                    )
 )
 line = (
-    Line(init_opts=opts.InitOpts(width='400px', height='500px',bg_color='rgba(28, 131, 225, 0.4)',
-                               theme=ThemeType.WALDEN))
+    Line(init_opts=opts.InitOpts(width='400px', height='500px',
+                               theme=ThemeType.DARK))
     .add_xaxis(bxuel)
     .add_yaxis('平均工资',bsmean,z_level=100)
     .set_series_opts(label_opts=opts.LabelOpts(is_show=True,position= "Right"),# 不显示标签
