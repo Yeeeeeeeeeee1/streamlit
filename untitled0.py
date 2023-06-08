@@ -197,7 +197,7 @@ bar = (
     .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状堆叠图'),
                      xaxis_opts=opts.AxisOpts(name='学历'),       
                      yaxis_opts=opts.AxisOpts(name='工资（k）'),
-                    legend_opts=opts.LegendOpts(type_="scroll", pos_left="right", orient="vertical")
+                    legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="vertical")
                     )
 )
 line = (
