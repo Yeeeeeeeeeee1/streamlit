@@ -232,12 +232,18 @@ bar = (
                 font_size='13'),
                     itemstyle_opts={
                 "normal": {
-                    "color": JsCode(
-                        """new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
-                            offset: 0,color: 'rgba(0, 244, 255, 1)'}
-                            ,{offset: 1,color: 'rgba(0, 0, 255, 1)'}], false)
-                        """
-                    ),  # 调整柱子颜色渐变
+                    "color": {
+                "type": 'linear',
+                "x": 0,
+                "y": 0,
+                "x2": 0,
+                "y2": 1,
+                "colorStops": [{
+                    "offset": 0, "color": '#0781C3' # 蓝色（头部）
+                }, {
+                    "offset": 1, "color": '#06F6F8' # 青色（底部）
+                }],
+            },  # 调整柱子颜色渐变
                     'shadowBlur': 8,  # 光影大小
                     "barBorderRadius": [100, 100, 100, 100],  # 调整柱子圆角弧度
                     "shadowColor": "#0EEEF9",  # 调整阴影颜色
