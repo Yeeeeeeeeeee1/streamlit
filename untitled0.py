@@ -278,7 +278,7 @@ cygs=[str(value) for value in c['企业业务'].values]
 list7 = c.values.tolist()
 def wordcloud_base() -> WordCloud:
     c = (
-        WordCloud(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(21, 1, 87, 0.8)',
+        WordCloud(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(21, 1, 87, 0.5)',
                                ))
         .add('' ,list7, word_size_range=[20,50],shape='diamond')
         .set_global_opts(title_opts=opts.TitleOpts(title='企业主营业务'))
