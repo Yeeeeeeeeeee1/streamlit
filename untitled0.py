@@ -125,9 +125,8 @@ with open(r".//500000.json", "r",encoding="utf-8") as f:
         json.loads(f.read())) 
 options = {
 "tooltip": {
-   " title": {
-                "text": '薪资地图'
-            },
+   " title":"薪资地图"
+            ,
       "trigger": 'item',
       "showDelay": 0,
       "transitionDuration": 0.2,
