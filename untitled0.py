@@ -194,7 +194,7 @@ bar = (
     .add_yaxis("最低工资", bsmin,bar_width = 20 )
     .add_yaxis("最高工资", bsmax,bar_width = 20)
     .set_series_opts(label_opts=opts.LabelOpts(is_show=False,position= "Right"))
-    .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状图',title_color="#2E2E2E"),
+    .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状图',title_textstyle_opts=(opts.TextStyleOpts(color='red')),),
                      xaxis_opts=opts.AxisOpts(name='学历'),       
                      yaxis_opts=opts.AxisOpts(name='工资（k）'),
                     legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="horizontal")
