@@ -125,6 +125,9 @@ with open(r".//500000.json", "r",encoding="utf-8") as f:
         json.loads(f.read())) 
 options = {
 "tooltip": {
+   " title": {
+                "text": '薪资地图'
+            },
       "trigger": 'item',
       "showDelay": 0,
       "transitionDuration": 0.2,
@@ -385,7 +388,7 @@ c43.metric("最高工资",60000)
 c44.metric("最低工资",1000)
 
 with c31:
-    st_pyecharts(pie,theme='dark', height='500px')
+    st_pyecharts(pie, height='500px')
     st_pyecharts(wordcloud_base(),theme='dark', height='450px')
 
 with c32:
