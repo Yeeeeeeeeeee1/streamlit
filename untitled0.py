@@ -123,7 +123,7 @@ with open(r".//500000.json", "r",encoding="utf-8") as f:
     map = Map(
         "chongqing", 
         json.loads(f.read())) 
-options = {"title": {"text": "薪资地图 ", "left": "center"},
+options = {"title": {"text": "薪资地图 ", "left": "left"},
 "tooltip": {
       "trigger": 'item',
       "showDelay": 0,
@@ -363,7 +363,7 @@ pie = (
         ),
     )
         .set_global_opts(
-            title_opts=opts.TitleOpts(title="招聘岗位的薪酬分布", pos_left='center'),  # 设置title的位置
+            title_opts=opts.TitleOpts(title="招聘岗位的薪酬分布", pos_left='left',title_textstyle_opts=(opts.TextStyleOpts(color='white')),),  # 设置title的位置
             legend_opts=opts.LegendOpts(pos_top="10%", orient="horizontal")   # 设置「各薪水类别」所在位置
     )
         .set_series_opts(
