@@ -365,7 +365,7 @@ pie = (
     )
         .set_global_opts(
             title_opts=opts.TitleOpts(title="招聘岗位的薪酬分布", pos_left='left',title_textstyle_opts=(opts.TextStyleOpts(color='white')),),  # 设置title的位置
-            legend_opts=opts.LegendOpts(pos_top="10%", orient="horizontal",type_ = 'scroll', background_color = "#D2D2D2")   # 设置「各薪水类别」所在位置
+            legend_opts=opts.LegendOpts(pos_top="10%", orient="horizontal",type_ = 'scroll', background_color = "#CBCBCB")   # 设置「各薪水类别」所在位置
     )
         .set_series_opts(
             tooltip_opts=opts.TooltipOpts(
