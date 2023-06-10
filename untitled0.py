@@ -198,7 +198,7 @@ bar = (
     .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状图',title_textstyle_opts=(opts.TextStyleOpts(color='white')),),
                      xaxis_opts=opts.AxisOpts(name='学历'),       
                      yaxis_opts=opts.AxisOpts(name='工资（k）'),
-                    legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="horizontal",background_color = "#CBCBCB")
+                    legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="horizontal")#ackground_color = "#CBCBCB")
                     )
 )
 line = (
