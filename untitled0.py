@@ -213,7 +213,7 @@ line = (
                      title_opts=opts.TitleOpts(title=''))        
     )
 bar.overlap(line)
-grid = Grid(init_opts=opts.InitOpts(bg_color='rgba(128, 128, 128, 0.4)'))
+grid = Grid(init_opts=opts.InitOpts(bg_color='rgba(128, 128, 128, 0.8)'))
 grid.add(bar,is_control_axis_index=True, grid_opts=opts.GridOpts(pos_left="5%", pos_right="5%", background_color='rgba(21, 1, 87, 0.5)'))
 grid.render_notebook()
 r=bi.groupby('公司名',as_index=False).mean('salary_mean').drop(index=0).sort_values(axis = 0, ascending = True,by=['salary_mean']).iloc[223:233]
