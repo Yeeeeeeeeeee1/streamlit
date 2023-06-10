@@ -188,8 +188,8 @@ bxuel=[str(value) for value in b['学历要求'].values]
 bsmean=[int(value) for value in b['salary_mean'].values]
 from pyecharts.charts import Bar
 bar = (
-    Bar(init_opts=opts.InitOpts(width='400px', height='500px',bg_color='rgba(220, 220, 220, 0.4)'
-                               ,theme=ThemeType.WALDEN))
+    Bar(init_opts=opts.InitOpts(width='400px', height='500px'
+                               ))
     .add_xaxis(bxuel)
     .add_yaxis("最低工资", bsmin,bar_width = 20 )
     .add_yaxis("最高工资", bsmax,bar_width = 20)
@@ -201,8 +201,8 @@ bar = (
                     )
 )
 line = (
-    Line(init_opts=opts.InitOpts(width='400px', height='500px',bg_color='rgba(220, 220, 220, 0.4)'
-                               ,theme=ThemeType.WALDEN))
+    Line(init_opts=opts.InitOpts(width='400px', height='500px'
+                               ))
     .add_xaxis(bxuel)
     .add_yaxis('平均工资',bsmean,z_level=100)
     .set_series_opts(label_opts=opts.LabelOpts(is_show=True,position= "Right"),# 不显示标签
