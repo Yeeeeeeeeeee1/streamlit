@@ -322,7 +322,7 @@ for i in bi['薪水']:
 x_data = ["5K以下", "5K-10K", "10K-15K", "15K-20K", "20K-30K", "30K-50K"]
 y_data = level1, level2, level3, level4, level5, level6
 pie = (
-    Pie(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.6)',
+    Pie(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
                                theme=ThemeType.DARK))  # 设置大小 
         .add(
         series_name="猎聘数据",
