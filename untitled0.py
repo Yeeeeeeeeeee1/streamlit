@@ -385,7 +385,7 @@ c43.metric("最高工资",60000)
 c44.metric("最低工资",1000)
 
 with c31:
-    st_pyecharts(pie, theme='dark',height='500px')
+    st_pyecharts(pie, theme='light',height='500px')
     st_pyecharts(wordcloud_base(),theme='dark', height='450px')
 
 with c32:
