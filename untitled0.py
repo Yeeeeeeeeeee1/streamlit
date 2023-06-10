@@ -385,14 +385,14 @@ c43.metric("最高工资",60000)
 c44.metric("最低工资",1000)
 
 with c31:
-    st_pyecharts(pie, height='500px')
+    st_pyecharts(pie, theme='dark',height='500px')
     st_pyecharts(wordcloud_base(),theme='dark', height='450px')
 
 with c32:
     #option_province, map_province0,events_province=m3()
     st_echarts(options,map=map,events=events, height=1000,theme='dark')
 with c33:
-    st_pyecharts(grid, height='500px')
+    st_pyecharts(grid,theme='dark', height='500px')
     st_pyecharts(bar,theme='dark', height='450px')
 
 # with c21:
