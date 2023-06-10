@@ -220,7 +220,7 @@ r=bi.groupby('公司名',as_index=False).mean('salary_mean').drop(index=0).sort_
 rsm=[int(value) for value in r['salary_mean'].values]
 rgs=[str(value) for value in r['公司名'].values]
 bar = (
-    Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(21, 1, 87, 0.7)
+    Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(21, 1, 87, 0.7)',
                                theme=ThemeType.DARK))
     .add_xaxis(rgs)
     .add_yaxis("平均工资", rsm)
