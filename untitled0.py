@@ -123,7 +123,7 @@ with open(r".//500000.json", "r",encoding="utf-8") as f:
     map = Map(
         "chongqing", 
         json.loads(f.read())) 
-options = {"title": {"text": "薪资地图 ", "left": "left"},
+options = {"title": {"text": "平均工资地域分布 ", "left": "left"},
 "tooltip": {
       "trigger": 'item',
       "showDelay": 0,
@@ -154,7 +154,7 @@ options = {"title": {"text": "薪资地图 ", "left": "left"},
 },
 "series": [
     {
-        "name": "商品数量地域分布",
+        "name": "平均工资地域分布",
         "type": "map",
         "roam": True,
         "map": "chongqing",
@@ -213,14 +213,14 @@ line = (
                      title_opts=opts.TitleOpts(title=''))        
     )
 bar.overlap(line)
-grid = Grid(init_opts=opts.InitOpts(bg_color='rgba(128, 128, 128, 0.8)'))
+grid = Grid(init_opts=opts.InitOpts(bg_color='rgba(128, 128, 128, 0.5)'))
 grid.add(bar,is_control_axis_index=True, grid_opts=opts.GridOpts(pos_left="5%", pos_right="5%", background_color='rgba(21, 1, 87, 0.5)'))
 grid.render_notebook()
 r=bi.groupby('公司名',as_index=False).mean('salary_mean').drop(index=0).sort_values(axis = 0, ascending = True,by=['salary_mean']).iloc[223:233]
 rsm=[int(value) for value in r['salary_mean'].values]
 rgs=[str(value) for value in r['公司名'].values]
 bar = (
-    Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.4)',
+    Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
                                theme=ThemeType.DARK))
     .add_xaxis(rgs)
     .add_yaxis("平均工资", rsm)
@@ -278,7 +278,7 @@ cygs=[str(value) for value in c['企业业务'].values]
 list7 = c.values.tolist()
 def wordcloud_base() -> WordCloud:
     c = (
-        WordCloud(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.4)',
+        WordCloud(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
                                ))
         .add('' ,list7, word_size_range=[20,50],shape='diamond')
         .set_global_opts(title_opts=opts.TitleOpts(title='企业主营业务'))
