@@ -124,6 +124,7 @@ with open(r".//500000.json", "r",encoding="utf-8") as f:
         "chongqing", 
         json.loads(f.read())) 
 options = {"title": {"text": "平均工资地域分布 ", "left": "left"},
+           "backgroundColor": 'rgba(128, 128, 128, 0.5)'
 "tooltip": {
       "trigger": 'item',
       "showDelay": 0,
