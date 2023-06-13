@@ -392,15 +392,15 @@ c43.metric("最高工资",60000)
 c44.metric("最低工资",1000)
 
 with c31:
-    st_pyecharts(pie, theme='macarons',height='500px')
-    st_pyecharts(wordcloud_base(),theme='dark', height='450px')
+    st_pyecharts(xinzi_tu(y_data), theme='macarons',height='500px')
+    st_pyecharts(wordcloud_base(list7),theme='dark', height='450px')
 
 with c32:
     #option_province, map_province0,events_province=m3()
     st_echarts(options,map=map,events=events, height=1000,theme='dark')
 with c33:
-    st_pyecharts(grid,theme='dark', height='500px')
-    st_pyecharts(bar,theme='dark', height='450px')
+    st_pyecharts(zhuhe_tu(bsmin,bsmax,bsmean,bxuel),theme='dark', height='500px')
+    st_pyecharts(rank_tu(rsm,rgs),theme='dark', height='450px')
 with c21:
     dd_option = st.selectbox(
         '请选择具体研究城市',
