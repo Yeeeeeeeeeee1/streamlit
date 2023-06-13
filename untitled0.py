@@ -290,7 +290,7 @@ def wordcloud_base(lsit7) -> WordCloud:
         .set_global_opts(title_opts=opts.TitleOpts(title='企业主营业务'))
     )
     return c
-wordcloud_base().render_notebook()
+#wordcloud_base().render_notebook()
 import pandas as pd
 from pyecharts.charts import Bar
 from pyecharts.charts import Pie
