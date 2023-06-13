@@ -189,79 +189,83 @@ bsmax=[int(value) for value in b['salary_max'].values]
 bxuel=[str(value) for value in b['学历要求'].values]
 bsmean=[int(value) for value in b['salary_mean'].values]
 from pyecharts.charts import Bar
-bar = (
-    Bar(init_opts=opts.InitOpts(width='400px', height='500px'
-                               ))
-    .add_xaxis(bxuel)
-    .add_yaxis("最低工资", bsmin,bar_width = 20 )
-    .add_yaxis("最高工资", bsmax,bar_width = 20)
-    .set_series_opts(label_opts=opts.LabelOpts(is_show=False,position= "Right"))
-    .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状图',title_textstyle_opts=(opts.TextStyleOpts(color='white')),),
-                     xaxis_opts=opts.AxisOpts(name='学历'),       
-                     yaxis_opts=opts.AxisOpts(name='工资（k）'),
-                    legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="horizontal")#ackground_color = "#CBCBCB")
-                    )
-)
-line = (
-    Line(init_opts=opts.InitOpts(width='400px', height='500px'
-                               ))
-    .add_xaxis(bxuel)
-    .add_yaxis('平均工资',bsmean,z_level=100)
-    .set_series_opts(label_opts=opts.LabelOpts(is_show=True,position= "Right"),# 不显示标签
-                   linestyle_opts=opts.LineStyleOpts(width=3), # 线例设置宽度
-                    )
-    .set_global_opts(xaxis_opts=opts.AxisOpts(), # 设置x轴标签旋转角度
-                     yaxis_opts=opts.AxisOpts(name='平均工资', min_=3), 
-                     title_opts=opts.TitleOpts(title=''))        
+def zhuhe_tu(mi,ma,me,xl):
+    bar = (
+        Bar(init_opts=opts.InitOpts(width='400px', height='500px'
+                                   ))
+        .add_xaxis(xl)
+        .add_yaxis("最低工资", mi,bar_width = 20 )
+        .add_yaxis("最高工资", ma,bar_width = 20)
+        .set_series_opts(label_opts=opts.LabelOpts(is_show=False,position= "Right"))
+        .set_global_opts(title_opts=opts.TitleOpts(title='学历与工资柱状图',title_textstyle_opts=(opts.TextStyleOpts(color='white')),),
+                         xaxis_opts=opts.AxisOpts(name='学历'),       
+                         yaxis_opts=opts.AxisOpts(name='工资（k）'),
+                        legend_opts=opts.LegendOpts(type_="scroll", pos_right=10, orient="horizontal")#ackground_color = "#CBCBCB")
+                        )
     )
-bar.overlap(line)
-grid = Grid(init_opts=opts.InitOpts(bg_color='rgba(128, 128, 128, 0.5)'))
-grid.add(bar,is_control_axis_index=True, grid_opts=opts.GridOpts(pos_left="5%", pos_right="5%", background_color='rgba(21, 1, 87, 0.5)'))
-grid.render_notebook()
+    line = (
+        Line(init_opts=opts.InitOpts(width='400px', height='500px'
+                                   ))
+        .add_xaxis(xl)
+        .add_yaxis('平均工资',me,z_level=100)
+        .set_series_opts(label_opts=opts.LabelOpts(is_show=True,position= "Right"),# 不显示标签
+                       linestyle_opts=opts.LineStyleOpts(width=3), # 线例设置宽度
+                        )
+        .set_global_opts(xaxis_opts=opts.AxisOpts(), # 设置x轴标签旋转角度
+                         yaxis_opts=opts.AxisOpts(name='平均工资', min_=3), 
+                         title_opts=opts.TitleOpts(title=''))        
+        )
+    bar.overlap(line)
+    grid = Grid(init_opts=opts.InitOpts(bg_color='rgba(128, 128, 128, 0.5)'))
+    grid.add(bar,is_control_axis_index=True, grid_opts=opts.GridOpts(pos_left="5%", pos_right="5%", background_color='rgba(21, 1, 87, 0.5)'))
+    grid.render_notebook()
+    return grid
 r=bi.groupby('公司名',as_index=False).mean('salary_mean').drop(index=0).sort_values(axis = 0, ascending = True,by=['salary_mean']).iloc[223:233]
 rsm=[int(value) for value in r['salary_mean'].values]
 rgs=[str(value) for value in r['公司名'].values]
-bar = (
-    Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
-                               theme=ThemeType.DARK))
-    .add_xaxis(rgs)
-    .add_yaxis("平均工资", rsm)
-    .set_series_opts(label_opts=opts.LabelOpts(
-                is_show=True,
-                position="right",
-                font_style='oblique',
-                font_weight='bolder',
-                font_size='13'),
-                    itemstyle_opts={
-                "normal": {
-                    "color": {
-                "type": 'linear',
-                "x": 0,
-                "y": 0,
-                "x2": 0,
-                "y2": 1,
-                "colorStops": [{
-                    "offset": 0, "color": '#0781C3' # 蓝色（头部）
-                }, {
-                    "offset": 1, "color": '#06F6F8' # 青色（底部）
-                }],
-            },  # 调整柱子颜色渐变
-                    'shadowBlur': 8,  # 光影大小
-                    "barBorderRadius": [100, 100, 100, 100],  # 调整柱子圆角弧度
-                    "shadowColor": "#0EEEF9",  # 调整阴影颜色
-                    'shadowOffsetY': 6,
-                    'shadowOffsetX': 6,  # 偏移量
+def rank_tu(rsm,rgs):
+    bar = (
+        Bar(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
+                                   theme=ThemeType.DARK))
+        .add_xaxis(rgs)
+        .add_yaxis("平均工资", rsm)
+        .set_series_opts(label_opts=opts.LabelOpts(
+                    is_show=True,
+                    position="right",
+                    font_style='oblique',
+                    font_weight='bolder',
+                    font_size='13'),
+                        itemstyle_opts={
+                    "normal": {
+                        "color": {
+                    "type": 'linear',
+                    "x": 0,
+                    "y": 0,
+                    "x2": 0,
+                    "y2": 1,
+                    "colorStops": [{
+                        "offset": 0, "color": '#0781C3' # 蓝色（头部）
+                    }, {
+                        "offset": 1, "color": '#06F6F8' # 青色（底部）
+                    }],
+                },  # 调整柱子颜色渐变
+                        'shadowBlur': 8,  # 光影大小
+                        "barBorderRadius": [100, 100, 100, 100],  # 调整柱子圆角弧度
+                        "shadowColor": "#0EEEF9",  # 调整阴影颜色
+                        'shadowOffsetY': 6,
+                        'shadowOffsetX': 6,  # 偏移量
+                    }
                 }
-            }
 
-                    )
-    .set_global_opts(title_opts=opts.TitleOpts(title='平均工资top10'),
-                     xaxis_opts=opts.AxisOpts(name='公司名'),       
-                     yaxis_opts=opts.AxisOpts(name='工资（k）'))
-    
-    .reversal_axis()
-)
-bar.render('平均工资top10.html')
+                        )
+        .set_global_opts(title_opts=opts.TitleOpts(title='平均工资top10'),
+                         xaxis_opts=opts.AxisOpts(name='公司名'),       
+                         yaxis_opts=opts.AxisOpts(name='工资（k）'))
+
+        .reversal_axis()
+    )
+    bar.render('平均工资top10.html')
+    return bar
 list7=[]
 for i in range(len(bi)):
     if '/' in str(bi['公司信息'][i]) :    
@@ -278,7 +282,7 @@ c=cy.groupby('企业业务',as_index=False).count()
 cysm=[int(value) for value in c['值'].values]
 cygs=[str(value) for value in c['企业业务'].values]
 list7 = c.values.tolist()
-def wordcloud_base() -> WordCloud:
+def wordcloud_base(lsit7) -> WordCloud:
     c = (
         WordCloud(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
                                ))
@@ -323,64 +327,65 @@ for i in bi['薪水']:
         level6 += 1
 x_data = ["5K以下", "5K-10K", "10K-15K", "15K-20K", "20K-30K", "30K-50K"]
 y_data = level1, level2, level3, level4, level5, level6
-pie = (
-    Pie(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
-                               theme=ThemeType.DARK))  # 设置大小 
-        .add(
-        series_name="猎聘数据",
-        data_pair=[list(z) for z in zip(x_data, y_data)],
-        center=["50%", "55%"],   # 设置圆心所在位置
-        radius=["30%", "70%"],   # 设置饼图的内圈和外圈差
-                rosetype = True,    # 南丁格尔
-        label_opts=opts.LabelOpts(
-            position="outside",
-            formatter=" {b|{b}: }{c}  {per|{d}%} ",  # 格式为：  {b|{b}: }{c}  {per|{d}%}      {b}:{d}%
-            background_color="#aaa",  
-            border_color="#aaa",
-            border_width=1,
-            border_radius=4,
-            rich={
-                "a": {"color": "#999", "lineHeight": 12, "align": "center"},
-                "abg": {
-                    "backgroundColor": "#e3e3e3",
-                    "width": "100%",
-                    "align": "right",
-                    "height": 12,
-                    "borderRadius": [4, 4, 0, 0],
+def xinzi_tu(y_data):
+    pie = (
+        Pie(init_opts=opts.InitOpts(width='800px', height='500px',bg_color='rgba(128, 128, 128, 0.5)',
+                                   theme=ThemeType.DARK))  # 设置大小 
+            .add(
+            series_name="猎聘数据",
+            data_pair=[list(z) for z in zip(x_data, y_data)],
+            center=["50%", "55%"],   # 设置圆心所在位置
+            radius=["30%", "70%"],   # 设置饼图的内圈和外圈差
+                    rosetype = True,    # 南丁格尔
+            label_opts=opts.LabelOpts(
+                position="outside",
+                formatter=" {b|{b}: }{c}  {per|{d}%} ",  # 格式为：  {b|{b}: }{c}  {per|{d}%}      {b}:{d}%
+                background_color="#aaa",  
+                border_color="#aaa",
+                border_width=1,
+                border_radius=4,
+                rich={
+                    "a": {"color": "#999", "lineHeight": 12, "align": "center"},
+                    "abg": {
+                        "backgroundColor": "#e3e3e3",
+                        "width": "100%",
+                        "align": "right",
+                        "height": 12,
+                        "borderRadius": [4, 4, 0, 0],
+                    },
+                    "hr": {
+                        "borderColor": "#aaa",
+                        "width": "100%",
+                        "borderWidth": 0.5,
+                        "height": 0,
+                    },
+                    "b": {"fontSize": 12, "lineHeight": 15},
+                    "per": {
+                        "color": "#eee",
+                        "backgroundColor": "#334455",
+                        "padding": [2, 4],
+                        "borderRadius": 2,
+                    },
                 },
-                "hr": {
-                    "borderColor": "#aaa",
-                    "width": "100%",
-                    "borderWidth": 0.5,
-                    "height": 0,
-                },
-                "b": {"fontSize": 12, "lineHeight": 15},
-                "per": {
-                    "color": "#eee",
-                    "backgroundColor": "#334455",
-                    "padding": [2, 4],
-                    "borderRadius": 2,
-                },
-            },
-        ),
+            ),
+        )
+            .set_global_opts(
+                title_opts=opts.TitleOpts(title="招聘岗位的薪酬分布", pos_left='left',title_textstyle_opts=(opts.TextStyleOpts(color='white')),),  # 设置title的位置
+                legend_opts=opts.LegendOpts(pos_top="10%", orient="horizontal",type_ = 'scroll', background_color = "#CBCBCB")   # 设置「各薪水类别」所在位置
+        )
+            .set_series_opts(
+                tooltip_opts=opts.TooltipOpts(
+                    trigger="item", formatter="{b}: {c} ({d}%)", # 设置鼠标悬停的提示信息
+                )
+        )
     )
-        .set_global_opts(
-            title_opts=opts.TitleOpts(title="招聘岗位的薪酬分布", pos_left='left',title_textstyle_opts=(opts.TextStyleOpts(color='white')),),  # 设置title的位置
-            legend_opts=opts.LegendOpts(pos_top="10%", orient="horizontal",type_ = 'scroll', background_color = "#CBCBCB")   # 设置「各薪水类别」所在位置
-    )
-        .set_series_opts(
-            tooltip_opts=opts.TooltipOpts(
-                trigger="item", formatter="{b}: {c} ({d}%)", # 设置鼠标悬停的提示信息
-            )
-    )
-)
-#pie.render("招聘岗位的薪酬分布.html")
-pie.render_notebook()
+    #pie.render("招聘岗位的薪酬分布.html")
+    pie.render_notebook()
 #make_snapshot(snapshot, pie.render(), "薪酬分布.png", pixel_ratio=10
-
+    return pie
 c41,c42,c43,c44=st.columns(4)
 c31,c32,c33=st.columns([1.1,1,1.1])
-#c21,c22=st.columns(2)
+c21,c22=st.columns(2)
 c41.metric("公司总数",len(bi))
 c42.metric("平均工资",9000)
 c43.metric("最高工资",60000)
@@ -396,7 +401,69 @@ with c32:
 with c33:
     st_pyecharts(grid,theme='dark', height='500px')
     st_pyecharts(bar,theme='dark', height='450px')
-
+with c21:
+    dd_option = st.selectbox(
+        '请选择具体研究城市',
+        a['具体地点'],key='selectbox_value1')
+#st.session_state.selectbox_value1
+with c22:
+    tu_option = st.selectbox(
+        '请选择研究类型',
+        ('薪资分布', '工资与学历的关系', '主营业务',"公司排名top"),key='selectbox_value2')
+#st.session_state.selectbox_value2
+if len(dd_option) != 0 :
+    ej_bi1=bi['具体地点'].str.contains(dd_option)
+    ej_bi = bi[ej_bi1]
+    b=ej_bi.groupby('学历要求',as_index=False).mean('salary_mean').drop(index=0).sort_values(axis = 0, ascending = True,by=['salary_mean'])
+    bsmin=[int(value) for value in b['salary_min'].values]
+    bsmax=[int(value) for value in b['salary_max'].values]
+    bxuel=[str(value) for value in b['学历要求'].values]
+    bsmean=[int(value) for value in b['salary_mean'].values]
+    r=ej_bi.groupby('公司名',as_index=False).mean('salary_mean').drop(index=0).sort_values(axis = 0, ascending = True,by=['salary_mean']).iloc[223:233]
+    rsm=[int(value) for value in r['salary_mean'].values]
+    rgs=[str(value) for value in r['公司名'].values]
+    level1, level2, level3, level4, level5, level6, level7 = 0, 0, 0, 0, 0, 0, 0
+    #遍历salary，然后对数据进行划分，取中值为标准，薪资单位为 K
+    for h in ej_bi['salary_mean']:
+        salary = h
+        if salary <= 5:
+            level1 += 1
+        if 5 < salary <= 10:
+            level2 += 1
+        elif 10 < salary <= 15:
+            level3 += 1
+        elif 15 < salary <= 20:
+            level4 += 1
+        elif 20 < salary <= 30:
+            level5 += 1
+        elif 30 < salary <= 50:
+            level6 += 1
+    x_data = ["5K以下", "5K-10K", "10K-15K", "15K-20K", "20K-30K", "30K-50K"]
+    list7,list4=[],[]
+    for i in ej_bi["公司信息"]:
+        if '/' in str(i) :    
+            gsmeg=str(i).split('/')[0]
+            list4.append(gsmeg)
+        else:
+            list4.append(None)
+    list4 = list(filter(None, list4)) 
+    list6=[1]*len(list4)
+    dic={'企业业务': pd.Series(list4),
+            '值': pd.Series(list6)}
+    cy=pd.DataFrame(dic)
+    c=cy.groupby('企业业务',as_index=False).count()
+    cysm=[int(value) for value in c['值'].values]
+    cygs=[str(value) for value in c['企业业务'].values]
+    list7 = c.values.tolist()
+    y_data1 = level1, level2, level3, level4, level5, level6
+    if tu_option == '薪资分布':
+        st_pyecharts(xinzi_tu(y_data1),theme='dark', height='500px',key=123)
+    elif tu_option == '工资与学历的关系':
+        st_pyecharts(zhuhe_tu(bsmin,bsmax,bsmean,bxuel),theme='dark', height='500px')
+    elif tu_option == '主营业务':
+        st_pyecharts(wordcloud_base(list7),theme='dark', height='450px')
+    elif tu_option == '公司排名top':
+        st_pyecharts(rank_tu(rsm,rgs),theme='dark', height='450px')
 # with c21:
 #     st_echarts(paleituo(nick_xse,nick_xse_cum),theme='dark')
 # with c22:
