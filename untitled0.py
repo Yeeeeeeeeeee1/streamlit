@@ -296,12 +296,12 @@ from pyecharts.charts import Bar
 from pyecharts.charts import Pie
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
-bi=pd.read_excel(r'.//lieping.xlsx')#,encoding='gb18030')
+#bi=pd.read_excel(r'.//lieping.xlsx')#,encoding='gb18030')
 part_interval = ["5K以下", "5K-10K", "10K-15K", "15K-20K", "20K-30K", "30K-50K", "50K以上"]
 level1, level2, level3, level4, level5, level6, level7 = 0, 0, 0, 0, 0, 0, 0
 #遍历salary，然后对数据进行划分，取中值为标准，薪资单位为 K
 for i in range(len(bi['salary_mean'])):
-    salary = bi["salary_mean"][i]
+    salary = bi['salary_mean'][i]
     if salary <= 5:
         level1 += 1
     if 5 < salary <= 10:
